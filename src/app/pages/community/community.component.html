@@ -1,0 +1,32 @@
+<div
+  class="nav flex bg-white justify-between py-1 border-b-2 border-gray-100 px-1 p-5"
+>
+  <div class="flex w-fit">
+    <img src="../../../assets/icons/sidebtn.svg" alt="sidebtn icon" />
+    <img src="../../../assets/icons/search.svg" alt="search icon" />
+  </div>
+  <div class="flex w-fit">
+    <img src="../../../assets/icons/bell.svg" alt="notification icon" />
+    <img src="../../../assets/icons/Avatar.svg" alt="avatar" />
+  </div>
+</div>
+<div class="flex">
+  <div class="w-5 bg-white"></div>
+  <div class="w-full">
+    <h2 class="font-bold text-#111927 py-3 text-lg">Communities</h2>
+    <div class="flex w-full">
+      <div class="w-1/5 bg-white">
+        <ul>
+          <app-community-group-item
+            *ngFor="let group of groups"
+            [groupItem]="group"
+          ></app-community-group-item>
+        </ul>
+      </div>
+      <div class="border-l-2 border-gray-100 bg-white w-4/5 mr-1">
+        <app-message-history></app-message-history>
+        <app-message-input></app-message-input>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+.chat-history-wrapper{
+    max-height: 450px; 
+}
+
+.message-container{
+    max-width: 300px;
+}

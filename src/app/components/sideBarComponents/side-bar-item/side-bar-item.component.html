@@ -1,0 +1,7 @@
+<div>
+  <div class="flex gap-x-4 text-#6C737F">
+    <img [src]="item.firstIcon" alt="side bar icon" />
+    <p class="text-#6C737F">{{ item.title }}</p>
+  </div>
+  <img [src]="item.secondIcon" alt="side bar icon" *ngIf="item.secondIcon" />
+</div>
