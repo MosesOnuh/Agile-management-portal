@@ -1,5 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { CommunityItem } from '../community-item';
+import { ChatService } from '../../../services/chat.service';
 
 @Component({
   selector: 'app-community-group-item',
@@ -8,4 +9,14 @@ import { CommunityItem } from '../community-item';
 })
 export class CommunityGroupItemComponent {
   @Input() groupItem!: CommunityItem;
+
+  constructor(public chatService: ChatService){}
+
+  createGroupMessage(groupName: string) {
+    if (groupName == 'Product Owner') {
+      this.chatService.CreateProductOwnerGroup();
+      this.chatService.currentChatGroupDisplay = "ProductOwner"
+      console.log("created product owner chat");
+    }
+  }
 }

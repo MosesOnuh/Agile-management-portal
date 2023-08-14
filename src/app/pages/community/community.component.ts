@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
-import { CommunityItem } from 'src/app/components/communityComponents/community-item';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CommunityItem } from '../../components/communityComponents/community-item';
+import { ChatService } from '../../services/chat.service';
+import { ChatMessage } from 'src/app/components/communityComponents/chat-message';
 
 @Component({
   selector: 'app-community',
   templateUrl: './community.component.html',
   styleUrls: ['./community.component.css'],
 })
-export class CommunityComponent {
+export class CommunityComponent implements OnInit, OnDestroy {
   groups: CommunityItem[] = [
     {
       title: 'Product Owner',
@@ -23,6 +25,16 @@ export class CommunityComponent {
     {
       title: 'Developers',
       firstIcon: '../../../assets/icons/developers.svg',
-    }
+    },
   ];
+
+  constructor(public chatService: ChatService) {}
+
+  ngOnInit(): void {
+    this.chatService.createChatConnection();
+  }
+
+  ngOnDestroy(): void {
+    this.chatService.stopChatConnection();
+  }
 }

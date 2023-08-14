@@ -11,6 +11,12 @@ import { MessageHistoryComponent } from './components/communityComponents/messag
 import { MessageInputComponent } from './components/communityComponents/message-input/message-input.component';
 import { SideBarItemComponent } from './components/sideBarComponents/side-bar-item/side-bar-item.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { InfoComponent } from './pages/info/info.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,13 +26,18 @@ import { SideBarItemComponent } from './components/sideBarComponents/side-bar-it
     CommunityGroupItemComponent,
     MessageHistoryComponent,
     MessageInputComponent,
-    SideBarItemComponent
+    SideBarItemComponent,
+    InfoComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
