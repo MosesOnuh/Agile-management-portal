@@ -6,7 +6,7 @@ import { User } from '../models/user';
 import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
 import { LoginUser } from '../models/login-user';
-import * as moment from 'moment';
+import * as moment from 'moment-timezone';
 
 @Injectable({
   providedIn: 'root',
@@ -38,13 +38,16 @@ export class ChatService {
     );
   }
 
-  getOldProductOwnerMessages(){
+  getOldProductOwnerMessages() {
     this.getProductOwnerMessages().subscribe({
       next: (response) => {
-        this.productOwnersMessages = [...response, ...this.productOwnersMessages]
+        this.productOwnersMessages = [
+          ...response,
+          ...this.productOwnersMessages,
+        ];
       },
       error: (error) => {
-        console.log(error.error.title || error.error.error)
+        console.log(error.error.title || error.error.error);
       },
     });
   }
@@ -101,6 +104,7 @@ export class ChatService {
       from: this.myName,
       role: this.myRole,
       // Timestamp: "",
+      // Timestamp: '',
       content,
     };
 
@@ -111,8 +115,39 @@ export class ChatService {
       .catch((error) => console.log(error));
   }
 
-  covertTimeString(dateTime: string) :string {
-    const momentDateTime = moment(dateTime);
-    return momentDateTime.format('HH:mm')
+  // covertTimeString(dateTime: string) :string {
+  //   const momentDateTime = moment(dateTime);
+  //   return momentDateTime.format('HH:mm')
+  // }
+
+  // convertTimeFormat(dateTime: string) :string {
+  //   const momentDateTime = moment(dateTime);
+  //   return momentDateTime.format('HH:mm')
+  // }
+
+  // convertTimeFormat(dateTime: string): string {
+  //   const date = new Date(dateTime);
+  //   const formattedTime = date.toLocaleTimeString('en-US', {
+  //     hour: '2-digit',
+  //     minute: '2-digit',
+  //   });
+  //   return formattedTime;
+  // }
+
+  convertTimeFormat(timestamp: string): string {
+    const momentObject = moment.tz(timestamp, 'UTC');
+    // const momentObject = moment.tz(
+    //   timestamp,
+    //   'YYYY-MM-DDTHH:mm:ss.SSSSSSSZ',
+    //   'utc'
+    // );
+    const formattedTime = momentObject.format('HH:mm');
+    return formattedTime;
   }
 }
+
+// const inputTime = "2023-08-14T16:52:55.3158276+01:00";
+// const date = new Date(inputTime);
+// const formattedTime = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+// console.log(formattedTime); // Output: 16:52

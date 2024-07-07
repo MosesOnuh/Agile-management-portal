@@ -18,8 +18,9 @@
               >
             </p>
             <p>{{ chatMessage.content }}</p>
-            <p class="text-right">11:45am</p>
+            <!-- <p class="text-right">11:45am</p> -->
             <!-- <p class="text-right">{{chatService.covertTimeString(chatMessage.Timestamp)}}</p> -->
+            <p class="text-right">{{chatService.convertTimeFormat(chatMessage.Timestamp!)}}</p>
           </div>
         </div>
       </div>
@@ -31,7 +32,8 @@
           class="message-container ml-8 p-2 w-fit bg-yellow-100 rounded-lg mr-4 max-w-50"
         >
           <p>{{ chatMessage.content }}</p>
-          <p class="text-right">11:45am</p>
+          <!-- <p class="text-right">11:45am</p> -->
+          <p class="text-right">{{chatService.convertTimeFormat(chatMessage.Timestamp!)}}</p>
         </div>
       </div>
     </ng-container>
