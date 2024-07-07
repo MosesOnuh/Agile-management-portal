@@ -1,4 +1,4 @@
-<div class="flex py-2 mt-3">
+<div class="flex py-2 mt-3 border-2 border-gray-100">
   <div class="flex gap-x-4 mx-4">
     <img
       src="../../../../assets/icons/attachment.svg"
@@ -9,6 +9,9 @@
       alt="message picture attachment icon"
     />
   </div>
-  <input type="text" class="w-4/5" placeholder="Type Message" />
-  <img src="../../../../assets/icons/sendMessage.svg" alt="send message icon" />
+  <input type="text" class="w-4/5" placeholder="Type Message" [(ngModel)]="content" />
+  <div (click)="sendMessage()" class="pl-1">
+    <img src="../../../../assets/icons/sendMessage.svg" alt="send message icon" />
+  </div>
+  
 </div>

@@ -1,3 +1,106 @@
-<div class="bg-blue-200">
-  <p>login works!</p>
+<div class="grid place-items-center">
+  <p class="text-xl font-semibold text-center mt-6">Agile COE Portal</p>
+  <div
+    class="border border-gray-200 w-fit grid place-items-center bg-blue-100 mt-4 pb-8"
+  >
+    <div class="flex mt-6 mb-4 text-white">
+      <button (click)="displayRegister()" class="w-20 px-4 py-1 " [class.bg-orange-500]="display == register"  [class.bg-orange-300]="display !== register">Register</button>
+      <button (click)="displayLogin()" [class.bg-orange-500]="display == login" [class.bg-orange-300]="display !== login" class="w-20 px-4 py-1 ">Login</button>
+    </div>
+    <div *ngIf="display == register">
+      <form [formGroup]="registerForm" class="">
+        <div class="flex flex-col gap-y-4 px-40 text-center mt-1 mx-auto">
+          <div class="">
+            <input
+              class="border-2 border-gray-300 px-2 py-1 w-60"
+              type="text"
+              formControlName="firstName"
+              placeholder="first name"
+            />
+          </div>
+          <div>
+            <input
+              class="border-2 border-gray-300 px-2 py-1 w-60"
+              type="text"
+              formControlName="lastName"
+              placeholder="last name"
+            />
+          </div>
+          <div>
+            <input
+              class="border-2 border-gray-300 px-2 py-1 w-60"
+              type="text"
+              formControlName="email"
+              placeholder="email"
+            />
+          </div>
+          <div>
+            <select
+              formControlName="role"
+              class="border-2 border-gray-300 px-2 py-1 w-60"
+            >
+              <option value="Select a role..." disabled>
+                Select a role...
+              </option>
+              <option *ngFor="let option of dropdownOptions" [value]="option">
+                {{ option }}
+              </option>
+            </select>
+          </div>
+          <div class="">
+            <input
+              class="border-2 border-gray-300 px-2 py-1 w-60"
+              type="password"
+              formControlName="password"
+              placeholder="password"
+            />
+          </div>
+        </div>
+        <div class="flex flex-col justify-center items-center">
+          <button
+            class="bg-blue-600 hover:bg-blue-300 px-4 text-white font-medium w-40 mx-auto d-block mt-6"
+            (click)="submitForm()"
+          >
+            Submit
+          </button>
+
+          <p class="mt-10"><small>Sign Up </small></p>
+          <div *ngIf="apiErrorMessages" class="text-red-500">{{apiErrorMessages[0]}}</div>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="display == login">
+      <form [formGroup]="loginForm">
+        <div class="flex flex-col gap-y-4 px-40 text-center mt-1 mx-auto">
+          <div>
+            <input
+              class="border-2 border-gray-300 px-2 py-1 w-60"
+              type="text"
+              formControlName="email"
+              placeholder="email"
+            />
+          </div>
+          <div class="">
+            <input
+              class="border-2 border-gray-300 px-2 py-1 w-60"
+              type="password"
+              formControlName="password"
+              placeholder="password"
+            />
+            <div class="flex flex-col items-center">
+              <button
+                class=" bg-blue-600 hover:bg-blue-300 px-4 text-white font-medium w-40 mx-auto d-block mt-6"
+                (click)="submitlogin()"
+              >
+                Submit
+              </button>
+
+              <p class="mt-10"><small>login to account</small></p>
+              <div *ngIf="apiErrorMessages" class="text-red-500">{{loginApiErrorMessages[0]}}</div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

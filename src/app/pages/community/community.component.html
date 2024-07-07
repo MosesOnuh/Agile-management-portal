@@ -24,8 +24,15 @@
         </ul>
       </div>
       <div class="border-l-2 border-gray-100 bg-white w-4/5 mr-1">
-        <app-message-history></app-message-history>
-        <app-message-input></app-message-input>
+        <div *ngIf="chatService.currentChatGroupDisplay == '' " class="h-full">
+          <app-info></app-info>
+        </div>
+        <div *ngIf="chatService.currentChatGroupDisplay == 'ProductOwner'">
+          <app-message-history
+            [messages]="chatService.productOwnersMessages"
+          ></app-message-history>
+          <app-message-input></app-message-input>
+        </div>
       </div>
     </div>
   </div>

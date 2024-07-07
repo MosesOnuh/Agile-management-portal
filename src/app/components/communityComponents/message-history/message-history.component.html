@@ -1,35 +1,39 @@
-<div class="chat-history-wrapper overflow-y-auto py-2">
+<div class="md:min-h-450 chat-history-wrapper overflow-y-auto py-2">
   <div *ngFor="let chatMessage of messages">
-    <ng-container *ngIf="chatMessage.id !== myId">
+    <!-- <ng-container *ngIf="chatMessage.id !== myId"> -->
+    <ng-container *ngIf="chatMessage.userId !== this.chatService.myUserId">
       <!-- other peoples messages -->
       <div class="w-full mb-2">
         <div class="flex gap-x-2 ml-4">
           <div
             class="bg-blue-100 w-10 h-10 rounded-full grid place-items-center"
           >
-            JV
+            <!-- JV --> {{chatMessage.from.substring(0, 2).toUpperCase()}}
           </div>
           <div class="p-2 w-fit bg-blue-100 message-container rounded-lg">
             <p>
-              jav &nbsp;
+              {{chatMessage.from}} &nbsp;
               <span
                 ><small>{{ chatMessage.role }}</small></span
               >
             </p>
-            <p>{{ chatMessage.message }}</p>
-            <p class="text-right">11:45am</p>
+            <p>{{ chatMessage.content }}</p>
+            <!-- <p class="text-right">11:45am</p> -->
+            <!-- <p class="text-right">{{chatService.covertTimeString(chatMessage.Timestamp)}}</p> -->
+            <p class="text-right">{{chatService.convertTimeFormat(chatMessage.Timestamp!)}}</p>
           </div>
         </div>
       </div>
     </ng-container>
-    <ng-container *ngIf="chatMessage.id == myId">
+    <ng-container *ngIf="chatMessage.userId == this.chatService.myUserId">
       <!-- users message -->
       <div class="w-full flex justify-end mb-2">
         <div
           class="message-container ml-8 p-2 w-fit bg-yellow-100 rounded-lg mr-4 max-w-50"
         >
-          <p>{{ chatMessage.message }}</p>
-          <p class="text-right">11:45am</p>
+          <p>{{ chatMessage.content }}</p>
+          <!-- <p class="text-right">11:45am</p> -->
+          <p class="text-right">{{chatService.convertTimeFormat(chatMessage.Timestamp!)}}</p>
         </div>
       </div>
     </ng-container>

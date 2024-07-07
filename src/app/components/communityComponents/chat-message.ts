@@ -1,8 +1,9 @@
 export interface ChatMessage {
-    id: string,
-    name: string,
-    role: string,
-    message: string,
-    //come back and change date to not be nullable
-    Date?: string,
+  userId: string;
+  from: string;
+  role: string;
+  content: string;
+  //come back and change date to not be nullable if needed
+//   Timestamp?: string;
+  Timestamp?: string;
 }
